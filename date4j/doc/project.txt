@@ -1,0 +1,74 @@
+【项目信息】
+项目名称 : date4j
+中文名称 : 
+项目版本 : version 1.0
+
+主要技术 : date / time / timestamp
+日期 / 时间 / 时间戳 / 日历
+
+项目描述 : date for java
+
+主要技术 : calendar / date / time / datetime / timezone
+
+项目描述 : calendar / 标准时间 / 格林治时间 / 世界时间 / 时区 / 
+
+项目备注 : 
+
+【项目规划】
+
+1) 声明
+com.hua.util.time 下的包仅为该项目研究使用，对外提供的功能统一封装在
+com.hua.util.DateTimeUtil 中.
+
+2)
+DateTimeUtil
+3)
+
+4)
+
+5)
+
+/**
+ 日期、时间、时间戳，统一称呼为时间(time)
+ 
+ 时间有多种类型，包含有 世纪/年/月/日/星期/时/分/秒/毫秒/纳秒//////////////////
+ 
+ 1) 日期  YYYY-MM-dd
+ 
+ 2) 时间  HH:mm:ss.SSS
+ 
+ 3) 时区
+ 
+ 4) 世纪
+ 
+ 5) 日历
+ 
+ 
+ */
+
+
+CST: central standard time 美国中央时区
+GMT: greenwich mean time 格林威治时间
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.hua</groupId>
+		<artifactId>util-entire</artifactId>
+		<version>0.0.1</version>
+	</parent>	
+	<artifactId>regex</artifactId>
+	<packaging>jar</packaging>
+	<name>regex</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<util.version>0.0.1</util.version>
+		<jakarta.regexp.version>1.4</jakarta.regexp.version>
+		<ant.regexp.version>1.9.4</ant.regexp.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.hua</groupId>
+			<artifactId>util</artifactId>
+			<version>${util.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta-regexp</groupId>
+			<artifactId>jakarta-regexp</artifactId>
+			<version>${jakarta.regexp.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant-apache-regexp</artifactId>
+			<version>${ant.regexp.version}</version>
+		</dependency>		
+		
+	</dependencies>
+
+</project>

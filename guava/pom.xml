@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.hua</groupId>
+		<artifactId>util-entire</artifactId>
+		<version>0.0.1</version>
+	</parent>	
+	<artifactId>guava</artifactId>
+	<packaging>jar</packaging>
+	<name>guava</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<util.version>0.0.1</util.version>
+		<guava.version>18.0</guava.version>
+		<guava.collection.version>r03</guava.collection.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.hua</groupId>
+			<artifactId>util</artifactId>
+			<version>${util.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava </groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>	
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-collections </artifactId>
+			<version>${guava.collection.version}</version>
+		</dependency>	
+
+		<dependency>
+			<groupId>com.google.guava </groupId>
+			<artifactId>guava-io</artifactId>
+			<version>${guava.collection.version}</version>
+		</dependency>	
+		
+	</dependencies>
+
+</project>
