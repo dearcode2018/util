@@ -20,6 +20,9 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -34,6 +37,28 @@ import com.hua.test.BaseTest;
  */
 public final class NumberTest extends BaseTest {
 
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	@Test
+	public void testGetNumberFromString() {
+		try {
+			String value = "不少于10个字20";
+			String regex = "(\\d)+";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(value);
+			System.out.println(matcher.find());
+			System.out.println(matcher.group());
+			
+		} catch (Exception e) {
+			log.error("testGetNumberFromString =====> ", e);
+		}
+	}
+	
 	/**
 	 * 
 	 * 描述: 
