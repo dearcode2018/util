@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * UtilTest.java
+ * TemplateTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.test.util;
+package template.code;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -39,12 +39,12 @@ import com.hua.test.BaseTest;
  * 描述: 
  * 
  * @author qye.zheng
- * UtilTest
+ * TemplateTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class UtilTest extends BaseTest {
+public final class TemplateTest extends BaseTest {
 
 	
 	

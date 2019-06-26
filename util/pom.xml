@@ -18,7 +18,7 @@
 		<fastutil.version>6.6.2</fastutil.version>
 		<guava.version>18.0</guava.version>
 		<lambdaj.version>2.3.3</lambdaj.version>
-		<pinyin4j.version>2.5.0</pinyin4j.version>
+		<pinyin4j.version>2.5.1</pinyin4j.version>
 		<trove4j.version>3.0.3</trove4j.version>
 		<common.version>0.0.1</common.version>
 		<http.client.version>4.4</http.client.version>

@@ -10,8 +10,10 @@
   	<!-- 模块-子项目 -->
 	<modules>
 		<!-- 模板 -->
-		<module>util-template</module>		
+		<module>util-template</module>	
+		<module>aviator</module>	
 		<module>date4j</module>		
+		<module>drools</module>
 		<module>fastutil6</module>		
 		<module>guava</module>		
 		<module>lambdaj</module>		
