@@ -7,9 +7,9 @@
 		<artifactId>util-entire</artifactId>
 		<version>0.0.1</version>
 	</parent>	
-	<artifactId>aviator</artifactId>
+	<artifactId>aviator-expression</artifactId>
 	<packaging>jar</packaging>
-	<name>aviator</name>
+	<name>aviator-expression</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		

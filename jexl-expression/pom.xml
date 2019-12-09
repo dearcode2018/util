@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.hua</groupId>
+		<artifactId>util-entire</artifactId>
+		<version>0.0.1</version>
+	</parent>	
+	<artifactId>jexl-expression</artifactId>
+	<packaging>jar</packaging>
+	<name>jexl-expression</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<util.version>0.0.1</util.version>
+		<jexl.version>2.1.1</jexl.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.hua</groupId>
+			<artifactId>util</artifactId>
+			<version>${util.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-jexl</artifactId>
+		    <version>${jexl.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>ognl</groupId>
+		    <artifactId>ognl</artifactId>
+		    <version>3.2.10</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.camel</groupId>
+		    <artifactId>camel-mvel</artifactId>
+		    <version>3.0.0-M4</version>
+		</dependency>		
+				
+	</dependencies>
+
+</project>

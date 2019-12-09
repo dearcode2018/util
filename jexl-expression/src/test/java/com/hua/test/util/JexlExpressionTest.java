@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * ExpressionTest.java
+ * JexlExpressionTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.test.aviator;
+package com.hua.test.util;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -23,9 +23,10 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.apache.commons.jexl2.Expression;
+import org.apache.commons.jexl2.JexlContext;
+import org.apache.commons.jexl2.JexlEngine;
+import org.apache.commons.jexl2.MapContext;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -33,8 +34,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import com.googlecode.aviator.AviatorEvaluator;
-import com.googlecode.aviator.Expression;
 import com.hua.bean.User;
 import com.hua.test.BaseTest;
 
@@ -43,12 +42,12 @@ import com.hua.test.BaseTest;
  * 描述: 
  * 
  * @author qye.zheng
- * ExpressionTest
+ * JexlExpressionTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class ExpressionTest extends BaseTest {
+public final class JexlExpressionTest extends BaseTest {
 
 	
 	/**
@@ -59,11 +58,11 @@ public final class ExpressionTest extends BaseTest {
 	 */
 	//@DisplayName("test")
 	@Test
-	public void testExpression() {
+	public void testJexlExpression() {
 		try {
 			User dongFang = new User();
 			dongFang.setNickname("东方");
-			dongFang.setPassword("123456");
+			dongFang.setPassword("1234561");
 			dongFang.setOid(2019L);
 			dongFang.setUsername("china");
 			dongFang.setValid(true);
@@ -74,170 +73,23 @@ public final class ExpressionTest extends BaseTest {
 			beiFang.setOid(2018L);
 			beiFang.setUsername("china");
 			beiFang.setValid(false);
-				
-			Map<String, Object> env = new HashMap<>();
-			env.put("beiFang", beiFang);
-			env.put("dongFang", dongFang);
 			
-			String expression = null;
 			Expression compiledExp = null;
 			Boolean result = false;
+			JexlEngine engine = new JexlEngine();// 创建表达式引擎对象
+			JexlContext context = new MapContext();// 创建Context设值对象
+			// // 表达式，表达式为对象调用方法，当然也可以是类调用方法
+			String expressionStr = "(beiFang.username == dongFang.username) && (beiFang.password == dongFang.password)";
 			
-			// 用户名且密码一样
-			expression = "(beiFang.username == dongFang.username) && (beiFang.password == dongFang.password)";
-			// 编译表达式
-			compiledExp = AviatorEvaluator.compile(expression);
-			// 执行表达式
-			result = (Boolean) compiledExp.execute(env);
-			System.out.println("result = " + result);
-			
-			// oid 东方大于北方 或 北方是无效的
-			expression = "(dongFang.oid > beiFang.oid) || (!beiFang.valid)";
-			// 编译表达式
-			compiledExp = AviatorEvaluator.compile(expression);
-			// 执行表达式
-			result = (Boolean) compiledExp.execute(env);
-			System.out.println("result = " + result);			
-			
-			// 用户名且密码一样
-			expression = "(beiFang.username == dongFang.username) && (beiFang.password == dongFang.password)";
-			// 编译表达式
-			compiledExp = AviatorEvaluator.compile(expression);
-			// 执行表达式
-			result = (Boolean) compiledExp.execute(env);
-			System.out.println("result = " + result);
-			
+			context.set("beiFang", beiFang);
+			context.set("dongFang", dongFang);
+			Expression expression = engine.createExpression(expressionStr);// 使用引擎创建表达式对象
+			Object o = expression.evaluate(context);// 使用表达式对象开始计算
+			System.out.println(o + ", " + expression.dump());
 		} catch (Exception e) {
-			log.error("testExpression =====> ", e);
+			log.error("testJexlExpression =====> ", e);
 		}
 	}	
-	
-	/**
-	 * 
-	 * 描述: 算术运算
-	 * @author qye.zheng
-	 * 
-	 */
-	//@DisplayName("test")
-	@Test
-	public void testArithmetic() {
-		try {
-			/*
-			 * 加减乘除 求余
-			 * ()括号运算
-			 * ==:  等于，数值、字符串相等
-			 * !=: 不等于
-			 * 大于小于以及等于
-			 */
-			User dongFang = new User();
-			dongFang.setNickname("东方");
-			dongFang.setPassword("123456");
-			dongFang.setOid(2019L);
-			dongFang.setUsername("china");
-			dongFang.setValid(true);
-			
-			User beiFang = new User();
-			beiFang.setNickname("北方");
-			beiFang.setPassword("123456");
-			beiFang.setOid(2018L);
-			beiFang.setUsername("china");
-			beiFang.setValid(false);
-				
-			Map<String, Object> env = new HashMap<>();
-			env.put("beiFang", beiFang);
-			env.put("dongFang", dongFang);
-			
-			String expression = null;
-			Expression compiledExp = null;
-			Boolean result = false;
-			
-			// oid 东方大于北方 或 北方是无效的
-			expression = "(dongFang.oid == (beiFang.oid + 1))";
-			// 编译表达式
-			compiledExp = AviatorEvaluator.compile(expression);
-			// 执行表达式
-			result = (Boolean) compiledExp.execute(env);
-			System.out.println("result = " + result);		
-			
-			// oid 东方大于北方 或 北方是无效的
-			expression = "(dongFang.oid != beiFang.oid)";
-			// 编译表达式
-			compiledExp = AviatorEvaluator.compile(expression);
-			// 执行表达式
-			result = (Boolean) compiledExp.execute(env);
-			System.out.println("result = " + result);			
-			
-		} catch (Exception e) {
-			log.error("testArithmetic =====> ", e);
-		}
-	}		
-	
-	/**
-	 * 
-	 * 描述: 字符串运算
-	 * @author qye.zheng
-	 * 
-	 */
-	//@DisplayName("test")
-	@Test
-	public void testRegex() {
-		try {
-			/*
-			 * 加减乘除 求余
-			 * ()括号运算
-			 * ==:  等于，数值、字符串相等
-			 * !=: 不等于
-			 * 大于小于以及等于
-			 */
-			User dongFang = new User();
-			dongFang.setNickname("东方");
-			dongFang.setPassword("123456");
-			dongFang.setOid(2019L);
-			dongFang.setUsername("china");
-			dongFang.setValid(true);
-			
-			User beiFang = new User();
-			beiFang.setNickname("北方");
-			beiFang.setPassword("123456");
-			beiFang.setOid(2018L);
-			beiFang.setUsername("china");
-			beiFang.setValid(false);
-				
-			Map<String, Object> env = new HashMap<>();
-			env.put("beiFang", beiFang);
-			env.put("dongFang", dongFang);
-			
-			String expression = null;
-			Expression compiledExp = null;
-			Boolean result = false;
-			
-			/*
-			 * 正则表达式
-			 * 1) ~ /书写正则表达式/. 即以 ~ 开头，单斜杠包围起来
-			 * 2) 
-			 */
-			//expression = "beiFang.nickname =~ /([.]*方$)/";
-			// 以 nickname 方 结尾
-			expression = "beiFang.nickname =~ /(.+方$)/";
-			// 编译表达式
-			compiledExp = AviatorEvaluator.compile(expression);
-			// 执行表达式
-			result = (Boolean) compiledExp.execute(env);
-			System.out.println("result = " + result);		
-
-			// password
-			expression = "beiFang.password =~ /[1-6] {6}/";
-			// 编译表达式
-			compiledExp = AviatorEvaluator.compile(expression);
-			// 执行表达式
-			result = (Boolean) compiledExp.execute(env);
-			System.out.println("result = " + result);					
-			
-			
-		} catch (Exception e) {
-			log.error("testRegex =====> ", e);
-		}
-	}		
 	
 	/**
 	 * 
@@ -266,7 +118,7 @@ public final class ExpressionTest extends BaseTest {
 	@Test
 	public void testTemp() {
 		try {
-			System.out.println("北方".substring(1, 2));
+
 			
 		} catch (Exception e) {
 			log.error("testTemp=====> ", e);

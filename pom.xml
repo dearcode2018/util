@@ -11,11 +11,12 @@
 	<modules>
 		<!-- 模板 -->
 		<module>util-template</module>	
-		<module>aviator</module>	
+		<module>aviator-expression</module>	
 		<module>date4j</module>		
 		<module>drools</module>
 		<module>fastutil6</module>		
-		<module>guava</module>		
+		<module>guava</module>	
+		<module>jexl-expression</module>	
 		<module>lambdaj</module>		
 		<module>location</module>		
 		<module>math</module>	
