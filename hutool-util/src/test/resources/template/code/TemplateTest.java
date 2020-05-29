@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * TimeTest.java
+ * TemplateTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.test.util;
+package template.code;
 
 // 静态导入
 import static org.junit.Assert.assertArrayEquals;
@@ -30,9 +30,9 @@ import com.hua.test.BaseTest;
  * 描述: 
  * 
  * @author qye.zheng
- * TimeTest
+ * TemplateTest
  */
-public final class TimeTest extends BaseTest {
+public final class TemplateTest extends BaseTest {
 
 	/**
 	 * 

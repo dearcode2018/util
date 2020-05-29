@@ -118,7 +118,7 @@ public class SensitiveWrodInit
 		BufferedReader bufferedReader = null;
 		try
 		{
-			final File file = new File(ClassPathUtil.getClassSubpath(PATH));
+			final File file = new File(ClassPathUtil.getClassPath(PATH));
 			reader = new InputStreamReader(new FileInputStream(file), Constant.CHART_SET_UTF_8);
 			bufferedReader = new BufferedReader(reader);
 			String line = null;

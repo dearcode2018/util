@@ -16,10 +16,12 @@
 		<module>drools</module>
 		<module>fastutil6</module>		
 		<module>guava</module>	
+		<module>hutool-util</module>
 		<module>jexl-expression</module>	
 		<module>lambdaj</module>		
 		<module>location</module>		
 		<module>math</module>	
+		<module>map-struct</module>
 		<module>regex</module>		
 		<module>sort</module>		
 		<module>time</module>		
