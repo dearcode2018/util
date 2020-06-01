@@ -22,6 +22,7 @@
 		<module>location</module>		
 		<module>math</module>	
 		<module>map-struct</module>
+		<module>map-struct-spring</module>
 		<module>regex</module>		
 		<module>sort</module>		
 		<module>time</module>		

@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!-- 继承 spring boot -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.4.RELEASE</version>
+	</parent>  
+	<groupId>com.hua</groupId>
+	<artifactId>map-struct-spring</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+	<name>map-struct-spring</name>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+		<util.version>0.0.1</util.version>
+		<compiler.plugin.version>3.8.1</compiler.plugin.version>
+		<org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
+		<lombok.version>1.18.6</lombok.version>
+		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<annotationProcessorPaths>
+						<annotationProcessorPath>
+  							<groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                             <version>${lombok.version}</version>                            
+						</annotationProcessorPath>
+						<annotationProcessorPath>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${org.mapstruct.version}</version>								
+						</annotationProcessorPath>
+					</annotationProcessorPaths>
+					<compilerArgs>
+						<compilerArg>-Amapstruct.suppressGeneratorTimestamp=true</compilerArg>
+						<compilerArg>-Amapstruct.suppressGeneratorVersionInfoComment=true</compilerArg>
+						<compilerArg>-Amapstruct.unmappedTargetPolicy=IGNORE</compilerArg>
+						<!-- default/spring/cdi/jsr330 -->
+						<compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>						
+					</compilerArgs>
+				</configuration>
+			</plugin>
+	
+			<!-- 打包插件，打包当前项目相关文件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- 解决 控制台输出测试信息 - 乱码 -->
+					<argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
+					<reuseForks>true</reuseForks>
+					<!-- 打包时跳过单元测试 -->
+					<skip>true</skip>
+					<skipTests>true</skipTests>
+					<!-- 忽略测试失败 -->
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>			
+			
+			<!-- package as an executable jar -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<goal>skipTest=true</goal>
+				</configuration>
+			</plugin>			
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.hua</groupId>
+			<artifactId>util</artifactId>
+			<version>${util.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${org.mapstruct.version}</version>
+		</dependency>
+
+		<!-- 普通Java项目引入此 -->
+	  <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<!-- 测试 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>	
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<!-- 让依赖工程继承该依赖 -->
+		<optional>true</optional>
+		</dependency>	
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+	</dependencies>
+
+</project>

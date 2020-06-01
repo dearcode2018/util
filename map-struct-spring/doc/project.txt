@@ -15,15 +15,12 @@ MapStruct是一个生成类型安全，高性能且无依赖的JavaBean映射代
 1) eclipse环境
 安装m2e-apt，首选项->maven->Annotation Processing->选择第1个选项
 具体工程: 配置好pom之后，执行mvn clean，然后clean一下工程，最后执行mvn install，可看到实现类的源码在target/generated-sources下
-2) 单个工程
-工程属性 ->Java Compiler -> Annotation Processing -> 勾选Enable Annotation Processing，否则无法生成 target/generated-sources
-文件，
-去掉勾选: 在mvn install生成实现类之后，每次project clean之后class文件就消失，原因是没有源文件存在.
-
-3) 修改Mapper文件
+2) 修改Mapper文件
 每次修改某个Mapper文件，需要先mvn clean一下，然后clean一下工程，最后执行mvn install
 否则，无法正常生成实现类. 
 单独删除target/generated-sources然后mvn install，并不起作用
+
+3)
 
 4)
 
