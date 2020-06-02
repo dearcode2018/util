@@ -25,8 +25,14 @@ MapStruct是一个生成类型安全，高性能且无依赖的JavaBean映射代
 否则，无法正常生成实现类. 
 单独删除target/generated-sources然后mvn install，并不起作用
 
-4)
-
+4) 路径
+默认生成路径: 
+target\generated-sources\annotations
+target\generated-test-sources\test-annotations
+支持单个项目可配置
+可以改成生成到src目录: 
+src\main\java
+src\test\java
 5)
 
 

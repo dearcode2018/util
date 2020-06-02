@@ -20,6 +20,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.annotation.Resource;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -27,11 +32,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mapstruct.factory.Mappers;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.hua.ApplicationStarter;
+import com.hua.dto.OrderQueryDTO;
+import com.hua.entity.AddressEntity;
+import com.hua.entity.OrderEntity;
+import com.hua.mapper.OrderExMapper;
+import com.hua.mapper.OrderMapper;
 import com.hua.test.BaseTest;
+import com.hua.util.JacksonUtil;
 
 
 /**
@@ -76,8 +88,11 @@ public final class MapStructStringTest extends BaseTest {
 	 * 而启动spring 及其mvc环境，然后通过注入方式，可以走完 spring mvc 完整的流程.
 	 * 
 	 */
-	//@Resource
-	//private UserController userController;
+	@Resource
+	private OrderMapper orderMapper;
+	
+	@Resource
+	private OrderExMapper orderExMapper;
 	
 	/**
 	 * 引当前项目用其他项目之后，然后可以使用
@@ -89,6 +104,337 @@ public final class MapStructStringTest extends BaseTest {
 	 * 
 	 */
 	
+	
+	/**
+	 * 
+	 * 描述: 同类型同名，无须配置
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void entity2QueryDTO() {
+		try {
+			OrderEntity entity = new OrderEntity();
+			entity.setId(123L);
+			entity.setOrderSn("SN234349839493");
+			entity.setOrderType(2);
+			entity.setReceiverKeyword("13018750898");
+			entity.setSourceType(2);
+			entity.setStatus(1);
+			
+			OrderQueryDTO dto = orderMapper.entity2QueryDTO(entity);
+			System.out.println(JacksonUtil.writeAsString(dto));
+			assertTrue(entity.getOrderSn().equals(dto.getOrderSn()));
+			assertTrue(entity.getReceiverKeyword().equals(dto.getReceiverKeyword()));
+			
+		} catch (Exception e) {
+			log.error("entity2QueryDTO =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 同类型不同名
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void entity2QueryDTO2() {
+		try {
+			OrderEntity entity = new OrderEntity();
+			entity.setId(123L);
+			entity.setOrderSn("SN234349839493");
+			entity.setOrderType(2);
+			entity.setReceiverKeyword("13018750898");
+			entity.setSourceType(2);
+			entity.setStatus(1);
+			entity.setExtend01("扩展1");
+			entity.setRemark("备注啊啊啊1");
+			
+			OrderQueryDTO dto = orderMapper.entity2QueryDTOFull(entity);
+			System.out.println(JacksonUtil.writeAsString(dto));
+			assertTrue(entity.getExtend01().equals(dto.getExtendFirst()));
+			assertTrue(entity.getRemark().equals(dto.getDescription()));
+			
+		} catch (Exception e) {
+			log.error("entity2QueryDTO2 =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 不同类型同名
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void entity2QueryDTO3() {
+		try {
+			OrderEntity entity = new OrderEntity();
+			entity.setId(123L);
+			entity.setOrderSn("SN234349839493");
+			entity.setOrderType(2);
+			entity.setReceiverKeyword("13018750898");
+			entity.setSourceType(2);
+			entity.setStatus(1);
+			entity.setExtend01("扩展1");
+			entity.setRemark("备注啊啊啊1");
+			entity.setDate("2020-06-01");
+			entity.setDateTime(LocalDateTime.now());
+			entity.setPrice(12.3289430);
+			
+			OrderQueryDTO dto = orderMapper.entity2QueryDTO3(entity);
+			System.out.println(JacksonUtil.writeAsString(dto));
+			assertTrue(entity.getReceiverKeyword().equals(dto.getReceiverKeyword()));
+			
+		} catch (Exception e) {
+			log.error("entity2QueryDTO3 =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 不同类型不同名
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void entity2QueryDTO4() {
+		try {
+			OrderEntity entity = new OrderEntity();
+			entity.setId(123L);
+			entity.setOrderSn("SN234349839493");
+			entity.setOrderType(2);
+			entity.setReceiverKeyword("13018750898");
+			entity.setSourceType(2);
+			entity.setStatus(1);
+			
+			entity.setExtend01("扩展1");
+			entity.setRemark("备注啊啊啊1");
+			
+			entity.setDate("2020-06-01");
+			entity.setDateTime(LocalDateTime.now());
+			entity.setPrice(11.3289430);
+			
+			entity.setDateTimeType(LocalDateTime.now());
+			entity.setDateString("2020-06-01");
+			
+			OrderQueryDTO dto = orderMapper.entity2QueryDTO4(entity);
+			System.out.println(JacksonUtil.writeAsString(dto));
+			assertTrue(entity.getOrderSn().equals(dto.getOrderSn()));
+			assertTrue(entity.getReceiverKeyword().equals(dto.getReceiverKeyword()));
+			
+		} catch (Exception e) {
+			log.error("entity2QueryDTO4 =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 完整的
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void entity2QueryDTOFull() {
+		try {
+			OrderEntity entity = new OrderEntity();
+			entity.setId(123L);
+			entity.setOrderSn("SN234349839493");
+			entity.setOrderType(2);
+			entity.setReceiverKeyword("13018750898");
+			entity.setSourceType(2);
+			entity.setStatus(1);
+			entity.setExtend01("扩展1");
+			entity.setRemark("备注啊啊啊1");
+			
+			entity.setDate("2020-06-01");
+			entity.setDateTime(LocalDateTime.now());
+			entity.setPrice(11.3289430);
+			entity.setDateTimeType(LocalDateTime.now());
+			entity.setDateString("2020-06-01");
+			OrderQueryDTO dto = orderMapper.entity2QueryDTOFull(entity);
+			System.out.println(JacksonUtil.writeAsString(dto));
+			assertTrue(entity.getOrderSn().equals(dto.getOrderSn()));
+			assertTrue(entity.getReceiverKeyword().equals(dto.getReceiverKeyword()));
+			assertTrue(entity.getExtend01().equals(dto.getExtendFirst()));
+			assertTrue(entity.getRemark().equals(dto.getDescription()));
+			
+		} catch (Exception e) {
+			log.error("entity2QueryDTOFull =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 同类型同名，无须配置
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void entity2QueryDTOExpression1() {
+		try {
+			OrderEntity entity = new OrderEntity();
+			entity.setId(123L);
+			entity.setOrderSn("SN234349839493");
+			entity.setOrderType(2);
+			entity.setReceiverKeyword("13018750898");
+			entity.setSourceType(2);
+			entity.setStatus(1);
+			entity.setSomeValue("天气真好，Jon");
+			
+			OrderQueryDTO dto = orderMapper.entity2QueryDTOExpression1(entity);
+			System.out.println(JacksonUtil.writeAsString(dto));
+			assertTrue(entity.getOrderSn().equals(dto.getOrderSn()));
+			assertTrue(entity.getReceiverKeyword().equals(dto.getReceiverKeyword()));
+			
+		} catch (Exception e) {
+			log.error("entity2QueryDTOExpression1 =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 同类型同名，无须配置
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void entity2QueryDTOExpression2() {
+		try {
+			OrderEntity entity = new OrderEntity();
+			entity.setId(123L);
+			entity.setOrderSn("SN234349839493");
+			entity.setOrderType(2);
+			entity.setReceiverKeyword("13018750898");
+			entity.setSourceType(2);
+			entity.setStatus(1);
+			entity.setSomeValue("天气真好，Jon");
+			
+			OrderMapper mapper = Mappers.getMapper(OrderMapper.class);
+			//OrderQueryDTO dto = mapper.entity2QueryDTOExpression2(entity);
+			//System.out.println(JacksonUtil.writeAsString(dto));
+			//assertTrue(entity.getOrderSn().equals(dto.getOrderSn()));
+			//assertTrue(entity.getReceiverKeyword().equals(dto.getReceiverKeyword()));
+			
+		} catch (Exception e) {
+			log.error("entity2QueryDTOExpression2 =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 同类型同名，无须配置
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void queryDTO2Entity() {
+		try {
+			OrderQueryDTO dto = new OrderQueryDTO();
+			dto.setOrderSn("SN234349839493");
+			dto.setOrderType(2);
+			dto.setReceiverKeyword("13018750898");
+			dto.setSourceType(2);
+			dto.setStatus(1);
+			
+			dto.setDate(LocalDate.now());
+			dto.setDateTime("2020-06-01 15:42:29");
+			dto.setPrice("11.3289430");
+			dto.setDateTimeString("2020-06-01 15:42:29");
+			dto.setDateType(LocalDate.now());
+			
+			OrderEntity entity = orderExMapper.queryDTO2Entity(dto);
+			System.out.println(JacksonUtil.writeAsString(entity));
+			assertTrue(dto.getOrderSn().equals(entity.getOrderSn()));
+			assertTrue(dto.getReceiverKeyword().equals(entity.getReceiverKeyword()));
+			
+		} catch (Exception e) {
+			log.error("queryDTO2Entity =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 完整的
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void entity2QueryDTOMulti() {
+		try {
+			OrderEntity entity = new OrderEntity();
+			entity.setId(123L);
+			entity.setOrderSn("SN234349839493 ");
+			entity.setOrderType(2);
+			entity.setReceiverKeyword("13018750898");
+			entity.setSourceType(2);
+			entity.setStatus(1);
+			entity.setExtend01("扩展1");
+			entity.setRemark("备注啊啊啊1");
+			
+			entity.setDate("2020-06-01");
+			entity.setDateTime(LocalDateTime.now());
+			entity.setPrice(11.3289430);
+			entity.setDateTimeType(LocalDateTime.now());
+			entity.setDateString("2020-06-01");
+			AddressEntity entity2 = new AddressEntity();
+			entity2.setProvince("广东");
+			entity2.setCity("中山市");
+			OrderQueryDTO dto = orderExMapper.entity2QueryDTOMulti(entity, entity2);
+			System.out.println(JacksonUtil.writeAsString(dto));
+			//assertTrue(entity.getOrderSn().equals(dto.getOrderSn()));
+			assertTrue(entity.getReceiverKeyword().equals(dto.getReceiverKeyword()));
+			assertTrue(entity.getExtend01().equals(dto.getExtendFirst()));
+			//assertTrue(entity.getRemark().equals(dto.getDescription()));
+			
+		} catch (Exception e) {
+			log.error("entity2QueryDTOFull =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testUpdate() {
+		try {
+			OrderQueryDTO dto = new OrderQueryDTO();
+			dto.setOrderSn("SN234349839493");
+			dto.setOrderType(2);
+			dto.setReceiverKeyword("13018750898");
+			dto.setSourceType(2);
+			dto.setStatus(1);
+			
+			dto.setDate(LocalDate.now());
+			dto.setDateTime("2020-06-01 15:42:29");
+			dto.setPrice("11.3289430");
+			dto.setDateTimeString("2020-06-01 15:42:29");
+			dto.setDateType(LocalDate.now());
+			AddressEntity address = new AddressEntity();
+			address.setProvince("广东");
+			address.setCity("中山市");
+			orderExMapper.update(address, dto);
+			assertTrue(dto.getCityName().equals(address.getCity()));
+			System.out.println(JacksonUtil.writeAsString(dto));
+			
+		} catch (Exception e) {
+			log.error("testUpdate =====> ", e);
+		}
+	}
 	
 	/**
 	 * 

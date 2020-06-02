@@ -6,6 +6,8 @@
  */
 package com.hua.dto;
 
+import java.time.LocalDate;
+
 import lombok.Data;
 
 /**
@@ -16,6 +18,7 @@ import lombok.Data;
 @Data
 public class OrderQueryDTO {
 
+	/** 同类型同名 */
     /* 订单编号 */
     private String orderSn;
     
@@ -30,5 +33,32 @@ public class OrderQueryDTO {
     
     /* 订单来源：0->PC订单；1->app订单 */
     private Integer sourceType;
+    
+    /** 同类型不同名 */
+    private String extendFirst;
+    
+    private String description;
+    
+    /** 不同类型同名 */
+    private String dateTime;
+    
+    private LocalDate date;
+    
+    private String price;
+   
+    /** 不同类型不同名 */
+    private String dateTimeString;
+    
+    private LocalDate dateType;
+    
+    /** 表达式 */
+    private String someValueEx;
+    
+    /** 来自多个实体 */
+	private String province;
+	
+	private String cityName;
+	
+    
 	
 }

@@ -10,7 +10,7 @@
 	<artifactId>map-struct</artifactId>
 	<packaging>jar</packaging>
 	<name>map-struct</name>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
@@ -19,38 +19,43 @@
 		<org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
 		<lombok.version>1.18.6</lombok.version>
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
+		<compiler.version>1.8</compiler.version>
 	</properties>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${compiler.plugin.version}</version>
-				<configuration>
-					<encoding>${project.build.sourceEncoding}</encoding>
-					<annotationProcessorPaths>
-						<annotationProcessorPath>
-  							<groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                             <version>${lombok.version}</version>
-						</annotationProcessorPath>
-						<annotationProcessorPath>
-							<groupId>org.mapstruct</groupId>
-							<artifactId>mapstruct-processor</artifactId>
-							<version>${org.mapstruct.version}</version>								
-						</annotationProcessorPath>
-					</annotationProcessorPaths>
-					<compilerArgs>
-						<compilerArg>-Amapstruct.suppressGeneratorTimestamp=true</compilerArg>
-						<compilerArg>-Amapstruct.suppressGeneratorVersionInfoComment=true</compilerArg>
-						<compilerArg>-Amapstruct.unmappedTargetPolicy=IGNORE</compilerArg>
-						<!-- default/spring/cdi/jsr330，如果没有引入spring依赖，将无法生成实现类的源码 -->
-						<compilerArg>-Amapstruct.defaultComponentModel=default</compilerArg>						
-					</compilerArgs>
-				</configuration>
-			</plugin>
-		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${compiler.plugin.version}</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+    					<source>${compiler.version}</source>
+                        <target>${compiler.version}</target>						
+						<annotationProcessorPaths>
+							<annotationProcessorPath>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok</artifactId>
+								<version>${lombok.version}</version>
+							</annotationProcessorPath>
+							<annotationProcessorPath>
+								<groupId>org.mapstruct</groupId>
+								<artifactId>mapstruct-processor</artifactId>
+								<version>${org.mapstruct.version}</version>
+							</annotationProcessorPath>
+						</annotationProcessorPaths>
+						<compilerArgs>
+							<compilerArg>-Amapstruct.suppressGeneratorTimestamp=true</compilerArg>
+							<compilerArg>-Amapstruct.suppressGeneratorVersionInfoComment=true</compilerArg>
+							<compilerArg>-Amapstruct.unmappedTargetPolicy=IGNORE</compilerArg>
+							<!-- default/spring/cdi/jsr330，如果没有引入spring依赖，将无法生成实现类的源码 -->
+							<compilerArg>-Amapstruct.defaultComponentModel=default</compilerArg>
+						</compilerArgs>
+					</configuration>					
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<dependencies>
@@ -64,6 +69,14 @@
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${org.mapstruct.version}</version>
+		</dependency>
+		
+		<!-- 为学习使用，实际不用引入 -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${org.mapstruct.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>

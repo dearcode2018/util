@@ -410,7 +410,6 @@ public final class OrderMapperTest extends BaseTest {
 	public void test() {
 		try {
 			
-			
 		} catch (Exception e) {
 			log.error("test =====> ", e);
 		}
