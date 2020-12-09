@@ -14,6 +14,7 @@
 		<module>aviator-expression</module>	
 		<module>date4j</module>		
 		<module>drools</module>
+		<module>delay-queue</module>
 		<module>fastutil6</module>		
 		<module>guava</module>	
 		<module>hutool-util</module>

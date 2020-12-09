@@ -1,0 +1,46 @@
+
+server:
+  port: 7070
+ 
+  servlet:
+    context-path: /
+ 
+spring:
+  profiles:
+    active:
+    - dev
+
+  autoconfigure:
+    exclude:
+    - 
+
+# spring.devtools.restart.enabled 禁用devtools自动重启功能，直接用IDE的热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths:
+      - src/main/java
+
+
+# 第一个redis，默认
+  redis:
+    #host: 192.168.5.11
+    host: localhost
+    port: 6379
+    password: dev_redis_1234
+    database: 14
+    timeout: 100000
+    
+    jedis:
+      pool:
+        max-idle: 50
+        min-idle: 5
+        max-active: 20
+
+
+
+
+
+
+
+

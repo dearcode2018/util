@@ -1,6 +1,6 @@
 /**
  * 描述: 
- * TemplateTest.java
+ * PasswordRegexTest.java
  * 
  * @author qye.zheng
  *  version 1.0
@@ -30,10 +30,41 @@ import com.hua.test.BaseTest;
  * 描述: 
  * 
  * @author qye.zheng
- * TemplateTest
+ * PasswordRegexTest
  */
-public final class TemplateTest extends BaseTest {
+public final class PasswordRegexTest extends BaseTest {
 
+    /**
+     * 
+     * 描述: 
+     * @author qye.zheng
+     * 
+     */
+    @Test
+    public void testPasswordRegex() {
+        try {
+            /*
+             * 密码长度至少8位，最长16位，密码含有数字与字母；
+             * 含有大小写字母
+             * 
+             * 1.长度通过字符串长度来做判断
+             * 2.内容通过正则来进行匹配，此处就是需要通过正则来体现
+             * 
+             */
+            regex = "^.*(?=.*\\d)(?=.*[A-Z]{1,})(?=.*[a-z]{1,}).*$";
+            System.out.println(regex);
+            target = "1kfl)*&^%!1AA4";
+            target = "klA33434_-^$$#%";
+            
+            System.out.println(target.length());
+            matches = target.matches(regex);
+            assertTrue(matches);
+            
+        } catch (Exception e) {
+            log.error("test =====> ", e);
+        }
+    }
+    
 	/**
 	 * 
 	 * 描述: 
