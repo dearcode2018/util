@@ -15,7 +15,7 @@
 	<packaging>jar</packaging>
 	
 	<properties>
-		<util.version>0.0.1</util.version>			
+		<util.version>1.0.0</util.version>			
 	</properties>
 
 	<!-- 使用spring boot 构建插件 运行: mvn spring-boot:run -->
@@ -32,7 +32,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>util</artifactId>
+			<artifactId>util-core</artifactId>
 			<version>${util.version}</version>
 		</dependency>
 		

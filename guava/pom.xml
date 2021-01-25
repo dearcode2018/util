@@ -5,42 +5,34 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>util-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>	
 	<artifactId>guava</artifactId>
 	<packaging>jar</packaging>
 	<name>guava</name>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-		<util.version>0.0.1</util.version>
-		<guava.version>18.0</guava.version>
-		<guava.collection.version>r03</guava.collection.version>
+
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>util</artifactId>
-			<version>${util.version}</version>
+			<artifactId>util-core</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava </groupId>
 			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
 		</dependency>	
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-collections </artifactId>
-			<version>${guava.collection.version}</version>
 		</dependency>	
 
 		<dependency>
 			<groupId>com.google.guava </groupId>
 			<artifactId>guava-io</artifactId>
-			<version>${guava.collection.version}</version>
 		</dependency>	
 		
 	</dependencies>

@@ -5,23 +5,12 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>util-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>	
-	<artifactId>util</artifactId>
+	<artifactId>util-core</artifactId>
 	<packaging>jar</packaging>
-	<name>util</name>
+	<name>util-core</name>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-		<common.version>0.0.1</common.version>
-		<date4j.version>1.2.2</date4j.version>		
-		<fastutil.version>6.6.2</fastutil.version>
-		<guava.version>18.0</guava.version>
-		<lambdaj.version>2.3.3</lambdaj.version>
-		<pinyin4j.version>2.5.1</pinyin4j.version>
-		<trove4j.version>3.0.3</trove4j.version>
-		<common.version>0.0.1</common.version>
-		<http.client.version>4.4</http.client.version>
 		
 	</properties>
 
@@ -29,49 +18,41 @@
 		<dependency>
 			<groupId>com.hua</groupId>
 			<artifactId>common</artifactId>
-			<version>${common.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.intelligents-ia.hirondelle</groupId>
 			<artifactId>date4j</artifactId>
-			<version>${date4j.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>it.unimi.dsi</groupId>
 			<artifactId>fastutil</artifactId>
-			<version>${fastutil.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.googlecode.lambdaj</groupId>
 			<artifactId>lambdaj</artifactId>
-			<version>${lambdaj.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>${http.client.version}</version>
 		</dependency>	
 
 		<dependency>
 			<groupId>com.belerweb</groupId>
 			<artifactId>pinyin4j</artifactId>
-			<version>${pinyin4j.version}</version>
 		</dependency>	
 
 		<dependency>
 			<groupId>net.sf.trove4j</groupId>
 			<artifactId>trove4j</artifactId>
-			<version>${trove4j.version}</version>
 		</dependency>	
 		
 	</dependencies>

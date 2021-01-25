@@ -5,19 +5,14 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>util-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>map-struct</artifactId>
 	<packaging>jar</packaging>
 	<name>map-struct</name>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jdk.version>1.8</jdk.version>
-		<util.version>0.0.1</util.version>
 		<compiler.plugin.version>3.8.1</compiler.plugin.version>
-		<org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
-		<lombok.version>1.18.6</lombok.version>
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 		<compiler.version>1.8</compiler.version>
 	</properties>
@@ -61,21 +56,18 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>util</artifactId>
-			<version>${util.version}</version>
+			<artifactId>util-core</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>${org.mapstruct.version}</version>
 		</dependency>
 		
 		<!-- 为学习使用，实际不用引入 -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct-processor</artifactId>
-			<version>${org.mapstruct.version}</version>
 			<scope>provided</scope>
 		</dependency>
 

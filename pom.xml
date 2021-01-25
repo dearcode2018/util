@@ -1,42 +1,44 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.hua</groupId>
-  <artifactId>util-entire</artifactId>
-  <version>0.0.1</version>
-  <packaging>pom</packaging>
-  <name>util-entire</name>
-  <description>util Maven Entire Project</description>
-  
-  	<!-- 模块-子项目 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.hua</groupId>
+	<artifactId>util-entire</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>util-entire</name>
+	<description>util Maven Entire Project</description>
+
+	<!-- 模块-子项目 -->
 	<modules>
 		<!-- 模板 -->
-		<module>util-template</module>	
-		<module>aviator-expression</module>	
-		<module>date4j</module>		
+		<module>util-template</module>
+		<module>aviator-expression</module>
+		<module>date4j</module>
 		<module>drools</module>
 		<module>delay-queue</module>
-		<module>fastutil6</module>		
-		<module>guava</module>	
+		<module>fastutil6</module>
+		<module>guava</module>
 		<module>hutool-util</module>
-		<module>jexl-expression</module>	
-		<module>lambdaj</module>		
-		<module>location</module>		
-		<module>math</module>	
+		<module>jexl-expression</module>
+		<module>lambdaj</module>
+		<module>location</module>
+		<module>math</module>
 		<module>map-struct</module>
 		<module>map-struct-spring</module>
-		<module>regex</module>		
-		<module>sort</module>		
-		<module>time</module>		
-		<module>trove4j3</module>		
-		<module>util</module>		
-		<module>word-filte</module>					
+		<module>regex</module>
+		<module>sort</module>
+		<module>time</module>
+		<module>trove4j3</module>
+		<module>util-core</module>
+		<module>word-filte</module>
 	</modules>
- 
+
 	<!-- 公共属性 -->
 	<properties>
 		<jdk.version>1.8</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.version>0.0.1</maven.version>
+		<maven.version>1.0.0</maven.version>
 		<maven.plugin.compiler.version>3.3</maven.plugin.compiler.version>
 		<maven.plugin.source.version>2.4</maven.plugin.source.version>
 		<maven.plugin.surefire.version>2.18.1</maven.plugin.surefire.version>
@@ -44,10 +46,155 @@
 		<maven.plugin.resources.version>2.7</maven.plugin.resources.version>
 		<maven.plugin.dependency.version>2.10</maven.plugin.dependency.version>
 		<maven.plugin.war.version>3.0</maven.plugin.war.version>
-	</properties>  
-  
-  
- 	<!-- 公共构建 -->
+		<util-core.version>1.0.0</util-core.version>
+		<aviator.version>4.2.0</aviator.version>
+		<common.version>1.0.0</common.version>
+		<date4j.version>1.2.2</date4j.version>
+		<fastutil.version>6.6.2</fastutil.version>
+		<guava.version>18.0</guava.version>
+		<lambdaj.version>2.3.3</lambdaj.version>
+		<pinyin4j.version>2.5.1</pinyin4j.version>
+		<trove4j.version>3.0.3</trove4j.version>
+		<common.version>1.0.0</common.version>
+		<http.client.version>4.4</http.client.version>
+		<guava.version>18.0</guava.version>
+		<guava.collection.version>r03</guava.collection.version>
+		<hutool.version>5.3.5</hutool.version>
+		<jexl.version>2.1.1</jexl.version>	
+		<ognl.version>3.2.10</ognl.version>
+		<camel.version>3.0.0-M4</camel.version>
+		<org.mapstruct.version>1.3.1.Final</org.mapstruct.version>	
+		<jakarta.regexp.version>1.4</jakarta.regexp.version>
+		<ant.regexp.version>1.9.4</ant.regexp.version>				
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.hua</groupId>
+				<artifactId>util-core</artifactId>
+				<version>${util-core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.googlecode.aviator</groupId>
+				<artifactId>aviator</artifactId>
+				<version>${aviator.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.hua</groupId>
+				<artifactId>common</artifactId>
+				<version>${common.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.intelligents-ia.hirondelle</groupId>
+				<artifactId>date4j</artifactId>
+				<version>${date4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>it.unimi.dsi</groupId>
+				<artifactId>fastutil</artifactId>
+				<version>${fastutil.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.googlecode.lambdaj</groupId>
+				<artifactId>lambdaj</artifactId>
+				<version>${lambdaj.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${http.client.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.belerweb</groupId>
+				<artifactId>pinyin4j</artifactId>
+				<version>${pinyin4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sf.trove4j</groupId>
+				<artifactId>trove4j</artifactId>
+				<version>${trove4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava-collections </artifactId>
+				<version>${guava.collection.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava </groupId>
+				<artifactId>guava-io</artifactId>
+				<version>${guava.collection.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-all</artifactId>
+				<version>${hutool.version}</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>org.apache.commons</groupId>
+			    <artifactId>commons-jexl</artifactId>
+			    <version>${jexl.version}</version>
+			</dependency>
+	
+			<dependency>
+			    <groupId>ognl</groupId>
+			    <artifactId>ognl</artifactId>
+			    <version>3.2.10</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>org.apache.camel</groupId>
+			    <artifactId>camel-mvel</artifactId>
+			    <version>3.0.0-M4</version>
+			</dependency>	
+
+			<dependency>
+				<groupId>org.mapstruct</groupId>
+				<artifactId>mapstruct</artifactId>
+				<version>${org.mapstruct.version}</version>
+			</dependency>	
+			
+			<!-- 为学习使用，实际不用引入 -->
+			<dependency>
+				<groupId>org.mapstruct</groupId>
+				<artifactId>mapstruct-processor</artifactId>
+				<version>${org.mapstruct.version}</version>
+				<scope>provided</scope>
+			</dependency>	
+			
+			<dependency>
+				<groupId>jakarta-regexp</groupId>
+				<artifactId>jakarta-regexp</artifactId>
+				<version>${jakarta.regexp.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.ant</groupId>
+				<artifactId>ant-apache-regexp</artifactId>
+				<version>${ant.regexp.version}</version>
+			</dependency>											
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- 公共构建 -->
 	<build>
 		<plugins>
 
@@ -147,5 +294,5 @@
 
 		</plugins>
 	</build>
-	
+
 </project>

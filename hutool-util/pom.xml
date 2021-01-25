@@ -5,29 +5,24 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>util-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>	
 	<artifactId>hutool-util</artifactId>
 	<packaging>jar</packaging>
 	<name>hutool-util</name>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-		<util.version>0.0.1</util.version>
-		<hutool.version>5.3.5</hutool.version>
+
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>util</artifactId>
-			<version>${util.version}</version>
+			<artifactId>util-core</artifactId>
 		</dependency>
 	
 		<dependency>
 			<groupId>cn.hutool</groupId>
 			<artifactId>hutool-all</artifactId>
-			<version>${hutool.version}</version>
 		</dependency>		
 		
 	</dependencies>

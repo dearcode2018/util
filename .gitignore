@@ -26,5 +26,5 @@
 #/src/main/resources/mybatis-generator.xml
 # 忽略
 #.gitignore
-*/.factorypath
+
 src/main/java/com/wehotel/uni/user/controller/TestController.java
