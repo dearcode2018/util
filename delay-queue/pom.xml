@@ -26,6 +26,22 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<!-- 打包插件，打包当前项目相关文件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- 解决 控制台输出测试信息 - 乱码 -->
+					<argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
+					<reuseForks>true</reuseForks>
+					<!-- 打包时跳过单元测试 -->
+					<skip>true</skip>
+					<skipTests>true</skipTests>
+					<!-- 忽略测试失败 -->
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>			
 		</plugins>
 	</build>
 
