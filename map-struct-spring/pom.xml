@@ -21,6 +21,7 @@
 		<util.version>1.0.0</util.version>
 		<org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
+		<start-class>com.hua.ApplicationStarter</start-class>
 	</properties>
 
 	<build>
