@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * DateTimeTest.java
+ * ChronoPeriodTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.test.util;
+package com.hua.test.time.chrono;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -18,14 +18,22 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
+
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
+import java.util.List;
+import java.util.Locale;
+
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
-import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-import java.time.chrono.IsoChronology;
-import java.util.Calendar;
-import java.util.TimeZone;
+
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,20 +42,20 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import com.hua.constant.Constant;
 import com.hua.test.BaseTest;
-import com.hua.util.DateTimeUtil;
 
 
 /**
  * 描述: 
  * 
  * @author qye.zheng
- * DateTimeTest
+ * ChronoPeriodTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class DateTimeTest extends BaseTest {
+public final class ChronoPeriodTest extends BaseTest {
 
 	
 	/**
@@ -58,22 +66,17 @@ public final class DateTimeTest extends BaseTest {
 	 */
 	//@DisplayName("test")
 	@Test
-	public void testDateTime() {
+	public void testTemporalAmount() {
 		try {
-			/**
-			 * 毫秒数: 从1970-01-01 00:00:00.000 GMT+0 开始算起
-			 * 正数为后面(after)的时间，负数为前面(before)的时间
-			 *
-			 * 一天毫秒数: 86400000 (8千6百40万 =  24*60*60*1000)
-			 * 计算哪一天的日期时间: 用当天毫秒数除以86400000 等到的整数为距离1970-01-01多少天从而计算出日期，
-			 * 余数则为当天的时间.
-			 */
-			
-			
-			
+			LocalDateTime dateTime = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constant.DATE_TIME_FORMAT_yyyy_MM_dd_HH_mm_ss, Locale.CHINA);
+			//Period period = Period.ofDays(-1);
+			Period period = Period.ofDays(1);
+			dateTime = dateTime.plus(period);
+			System.out.println(dateTime.format(formatter));
 			
 		} catch (Exception e) {
-			log.error("testDateTime =====> ", e);
+			log.error("test =====> ", e);
 		}
 	}
 	
@@ -85,63 +88,17 @@ public final class DateTimeTest extends BaseTest {
 	 */
 	//@DisplayName("test")
 	@Test
-	public void testCalculateTime() {
+	public void testAddTo() {
 		try {
+			LocalDateTime dateTime = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constant.DATE_TIME_FORMAT_yyyy_MM_dd_HH_mm_ss, Locale.CHINA);
+			//Period period = Period.ofDays(-1);
+			TemporalAmount period = Period.ofDays(1);
+			dateTime = dateTime.plus(period);
+			System.out.println(dateTime.format(formatter));
 			
-			/**
-			 * 毫秒数: 距离 1970-01-01, 00:00:00 GMT+0 (Greenwich Mean Time 格林威治标准时间)的毫秒数
-			 * 计算方法: 距离1970-01-01的天数，乘以86400000，计算出格林威治的当前小时(不同时区要进行加减)
-			 * 分钟、秒、毫秒数来运算.
-			 * 因为时间戳纯粹是一个数字，不带有地区信息，因此，该数字在不同的时区有不同的小时显示，差值为时区和中时区之差.
-			 */
-			
-			final long dayMillisec = 86400000L;
-			// 今年
-			final int currentYear = DateTimeUtil.getYear();
-			final int startYear = 1970;
-			int year = startYear;
-			int totalDay = 0;
-			while (year < currentYear) {
-				if (DateTimeUtil.isLeapYear(year)) { // 闰年，366天
-					totalDay += 366;
-				} else { // 平年，365天
-					totalDay += 365;
-				}
-				year++;
-			}
-			// 加上今年昨天的天数
-			totalDay += DateTimeUtil.getDayOfYear() - 1;
-			/*
-			 * 计算出 格林威治的小时数 calendar.get(Calendar.HOUR_OF_DAY) 获取的是当前时区的
-			 * 也可以指定中时区来计算小时数
-			 */
-			
-			// 方式1: 获取中时区时间信息
-			final Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-			final int hour = calendar.get(Calendar.HOUR_OF_DAY);
-			final int minute = calendar.get(Calendar.MINUTE);
-			final int second = calendar.get(Calendar.SECOND);
-			final int millisecond = calendar.get(Calendar.MILLISECOND);
-			
-			// 方式2: 获取本地时区时间信息
-			/*
-			final Calendar calendar = DateTimeUtil.getCalendar();
-			final int hour = calendar.get(Calendar.HOUR_OF_DAY) - 8;
-			final int minute = calendar.get(Calendar.MINUTE);
-			final int second = calendar.get(Calendar.SECOND);
-			final int millisecond = calendar.get(Calendar.MILLISECOND); */
-			
-			
-			
-			// 距离 1970-01-01 00:00:00.000 的毫秒数
-			// 手工计算
-			long millisec = totalDay * dayMillisec + hour * 60 * 60 * 1000 + minute * 60 * 1000 + second * 1000 + millisecond;
-			//System.out.println(totalDay * dayMillisec);
-			System.out.println("手工计算: " + millisec);
-			// 工具计算
-			System.out.println("工具计算: " + calendar.getTimeInMillis());
 		} catch (Exception e) {
-			log.error("testCalculateTime =====> ", e);
+			log.error("test =====> ", e);
 		}
 	}
 	
@@ -153,15 +110,17 @@ public final class DateTimeTest extends BaseTest {
 	 */
 	//@DisplayName("test")
 	@Test
-	public void printTimeZone() {
+	public void testSubstractFrom() {
 		try {
-			String[] ids = TimeZone.getAvailableIDs();
-			for (String id : ids) {
-				System.out.println(id);
-			}
+			LocalDateTime dateTime = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constant.DATE_TIME_FORMAT_yyyy_MM_dd_HH_mm_ss, Locale.CHINA);
+			//Period period = Period.ofDays(-1);
+			TemporalAmount period = Period.ofDays(1);
+			dateTime = dateTime.minus(period);
+			System.out.println(dateTime.format(formatter));
 			
 		} catch (Exception e) {
-			log.error("printTimeZone =====> ", e);
+			log.error("test =====> ", e);
 		}
 	}
 	
@@ -173,14 +132,41 @@ public final class DateTimeTest extends BaseTest {
 	 */
 	//@DisplayName("test")
 	@Test
-	public void testIsLeapYear() {
+	public void testGetUnit() {
 		try {
-			int year = 20;
-			System.out.println(DateTimeUtil.isLeapYear(year));
-			System.out.println(IsoChronology.INSTANCE.isLeapYear(year));
-			
+			//Period period = Period.ofDays(-1);
+			//TemporalAmount period = Period.ofDays(1);
+			TemporalAmount period = Period.ofDays(1);
+			 List<TemporalUnit> units = period.getUnits();
+			 /*
+				Years
+				Months
+				Days
+			  */
+			units.forEach(System.out :: println);
+		
 		} catch (Exception e) {
-			log.error("testIsLeapYear =====> ", e);
+			log.error("test =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testGet() {
+		try {
+			//Period period = Period.ofDays(-1);
+			//TemporalAmount period = Period.ofDays(1);
+			TemporalAmount period = Period.ofDays(1);
+			long value = period.get(ChronoUnit.DAYS);
+			System.out.println("value = " + value);
+		} catch (Exception e) {
+			log.error("test =====> ", e);
 		}
 	}
 	
@@ -211,7 +197,7 @@ public final class DateTimeTest extends BaseTest {
 	@Test
 	public void testTemp() {
 		try {
-			System.out.println(DateTimeUtil.getDayOfYear());
+			
 			
 		} catch (Exception e) {
 			log.error("testTemp=====> ", e);
