@@ -26,10 +26,14 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,6 +57,27 @@ import com.hua.test.BaseTest;
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
 public final class TransferTest extends BaseTest {
 
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testLocalDateTimeToDate() {
+		try {
+			// 当天最后的时间
+			LocalDateTime dateTime = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constant.DATE_TIME_FORMAT_yyyy_MM_dd_HH_mm_ss, Locale.CHINA);
+			System.out.println(dateTime.format(formatter));
+			Date date = Date.from(dateTime.toInstant(ZoneOffset.of(Constant.DEFAULT_ZONE_OFFSET)));
+			System.out.println(date);
+		} catch (Exception e) {
+			log.error("test =====> ", e);
+		}
+	}
 	
 	/**
 	 * 

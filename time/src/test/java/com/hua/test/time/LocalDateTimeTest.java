@@ -18,17 +18,16 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.jupiter.api.DynamicTest.dynamicTest;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,6 +51,26 @@ import com.hua.test.BaseTest;
 //@Tags({@Tag("测试类标�?1"), @Tag("测试类标�?2")})
 public final class LocalDateTimeTest extends BaseTest {
 
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testLocalTimeMin() {
+		try {
+			// 当天最后的时间
+			LocalDateTime dateTime = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Constant.DATE_TIME_FORMAT_yyyy_MM_dd_HH_mm_ss, Locale.CHINA);
+			System.out.println(dateTime.format(formatter));
+			
+		} catch (Exception e) {
+			log.error("test =====> ", e);
+		}
+	}
 	
 	/**
 	 * 
