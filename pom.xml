@@ -56,7 +56,7 @@
 		<pinyin4j.version>2.5.1</pinyin4j.version>
 		<trove4j.version>3.0.3</trove4j.version>
 		<common.version>1.0.0</common.version>
-		<http.client.version>4.4</http.client.version>
+		<http.client.version>4.5.13</http.client.version>
 		<guava.version>18.0</guava.version>
 		<guava.collection.version>r03</guava.collection.version>
 		<hutool.version>5.3.5</hutool.version>
